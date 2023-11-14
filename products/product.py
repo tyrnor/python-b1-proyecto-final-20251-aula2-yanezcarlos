@@ -8,13 +8,13 @@ class Product(ABC):
       self.price = price     
     
     def describe(self):
-        return f"Product - Type: {self.type()}, Name: {self.name}, Id: {self.id} , Price: {self.price} , {self.container().describe()}."   
+        return f"Product - Type: {self.type()}, Name: {self.name}, Id: {self.id} , Price: {self.price} , {self.foodPackage().describe()}."   
     
     @abstractmethod
     def type(self) -> str:
         pass
     @abstractmethod
-    def container(self)->Container:
+    def foodPackage(self)->FoodPackage:
         pass  
 
 class Hamburger(Product):
@@ -22,7 +22,7 @@ class Hamburger(Product):
         super().__init__(id,name,price)
     def type(self) -> str:
         return "Hamburguesa"
-    def container(self) -> Container:
+    def foodPackage(self) -> FoodPackage:
         return Wrapping()
         
 class Soda(Product):
