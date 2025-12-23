@@ -1,16 +1,24 @@
 #Write your code here
 from abc import ABC, abstractmethod
 
+# Clase base abstracta que representa un paquete de comida genérico.
+# Define la interfaz que deben implementar todos los tipos de empaquetado.
 class FoodPackage(ABC): 
     @abstractmethod
     def pack(self)  -> str:
+        
+        # Devuelve el tipo de empaquetado utilizado para el producto.
         pass
     
     @abstractmethod
     def material(self) -> str:
+        
+        # Devuelve el material del empaquetado.
         pass
     
     def describe(self):
+        
+        #Devuelve una decripción del empaquetado combinando el tipo de paquete y el material.
         return f"Empaque: {self.pack()} , Material: {self.material()}"    
     
 class Wrapping(FoodPackage):  
