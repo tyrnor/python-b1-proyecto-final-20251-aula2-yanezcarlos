@@ -1,23 +1,87 @@
 from abc import ABC, abstractmethod
-#Write your code here
+from users.user import Cashier, Customer
+from products.product import Hamburger, Soda, Drink, HappyMeal
+import pandas as pd
+
+# Write your code here
+
 
 class Converter(ABC):
-  @abstractmethod
-  def convert(self,dataFrame,*args) -> list:
-      pass  
-  def print(self, objects):
-    for item in objects:
-      print(item.describe())
+    @abstractmethod
+    def convert(self, dataFrame: pd.DataFrame, *args) -> list:
+        pass
+
+    def print(self, objects):
+        for item in objects:
+            print(item.describe())
+
 
 class CashierConverter(Converter):
-  def convert(self,dataFrame):    
-    #Write your code here
-    pass
+    def convert(self, dataFrame, *args) -> list:
+        # Write your code here
+        cashiers = []
+        for _, row in dataFrame.iterrows():
+            cashier = Cashier(
+                dni=str(row["dni"]),
+                name=row["name"],
+                age=int(row["age"]),
+                timeTable=row["timetable"],
+                salary=float(row["salary"]),
+            )
+            cashiers.append(cashier)
+
+        return cashiers
+
 
 class CustomerConverter(Converter):
-  #Write your code here
-  pass
+    # Write your code here
+    def convert(self, dataFrame, *args) -> list:
+        customers = []
+        for _, row in dataFrame.iterrows():
+            cashier = Customer(
+                dni=str(row["dni"]),
+                name=row["name"],
+                age=int(row["age"]),
+                email=row["email"],
+                postalCode=str(row["postalcode"]),
+            )
+            customers.append(cashier)
+
+        return customers
+
 
 class ProductConverter(Converter):
-  #Write your code here
-  pass
+    # Write your code here
+    def convert(self, dataFrame, *args) -> list:
+        products = []
+
+        # Se espera que el primer argumento indique el tipo de producto
+        product_type = args[0]
+
+        for _, row in dataFrame.iterrows():
+            if product_type == "hamburger":
+                product = Hamburger(
+                    id=row["id"], name=row["name"], price=float(row["price"])
+                )
+
+            elif product_type == "soda":
+                product = Soda(
+                    id=row["id"], name=row["name"], price=float(row["price"])
+                )
+
+            elif product_type == "drink":
+                product = Drink(
+                    id=row["id"], name=row["name"], price=float(row["price"])
+                )
+
+            elif product_type == "happymeal":
+                product = HappyMeal(
+                    id=row["id"], name=row["name"], price=float(row["price"])
+                )
+
+            else:
+                continue
+
+            products.append(product)
+
+        return products
