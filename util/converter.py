@@ -56,7 +56,7 @@ class ProductConverter(Converter):
     def convert(self, dataFrame, *args) -> list:
         products = []
 
-        # Se espera que el primer argumento indique el tipo de producto
+        # Se espera que el primer argumento indique el tipo de producto, haciendo uso de la clase Enum ProductType
         product_type = args[0]
 
         for _, row in dataFrame.iterrows():
