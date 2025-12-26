@@ -11,7 +11,7 @@ class CSVFileManager:
 
     def __init__(self, path: str):
 
-        # Ruta del archiv CSV
+        # Ruta del archivo CSV
         self.path = path
 
     def read(self) -> pd.DataFrame:
