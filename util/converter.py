@@ -8,11 +8,21 @@ import pandas as pd
 
 
 class Converter(ABC):
+    """
+    Clase abstracta Converter. Define la interfaz común
+    para todas las clases encargadas de convertir filas de un
+    DataFrame en objetos.
+    """
+
     @abstractmethod
     def convert(self, dataFrame: pd.DataFrame, *args) -> list:
+        
+        # Convierte las filas de un DataFrame en una lista de objetos.
         pass
 
     def print(self, objects):
+
+        # Imprime por pantalla la descripción de cada objeto.
         for item in objects:
             print(item.describe())
 
