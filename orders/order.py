@@ -19,7 +19,7 @@ class Order:
         for product in self.products:
             total += product.price
         
-        return total
+        return round(total, 2)
 
     def show(self):
         print("Hello : " + self.customer.describe())
