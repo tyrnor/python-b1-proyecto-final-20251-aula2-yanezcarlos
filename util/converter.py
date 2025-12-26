@@ -16,7 +16,7 @@ class Converter(ABC):
 
     @abstractmethod
     def convert(self, dataFrame: pd.DataFrame, *args) -> list:
-        
+
         # Convierte las filas de un DataFrame en una lista de objetos.
         pass
 
@@ -27,6 +27,7 @@ class Converter(ABC):
             print(item.describe())
 
 
+# Clase encargada de convertir un DataFrame de cajeros en una lista de objetos Cashier.
 class CashierConverter(Converter):
     def convert(self, dataFrame, *args) -> list:
         # Write your code here
@@ -44,6 +45,7 @@ class CashierConverter(Converter):
         return cashiers
 
 
+# Clase encargada de convertir un DataFrame de clientes en una lista de objetos Customer.
 class CustomerConverter(Converter):
     # Write your code here
     def convert(self, dataFrame, *args) -> list:
@@ -61,6 +63,7 @@ class CustomerConverter(Converter):
         return customers
 
 
+# Clase encargada de convertir un DataFrame de productos en una lista de objetos Product.
 class ProductConverter(Converter):
     # Write your code here
     def convert(self, dataFrame, *args) -> list:
