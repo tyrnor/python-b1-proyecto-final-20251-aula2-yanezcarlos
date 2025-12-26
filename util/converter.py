@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from users.user import Cashier, Customer
 from products.product import Hamburger, Soda, Drink, HappyMeal
+from util.product_type import ProductType
 import pandas as pd
 
 # Write your code here
@@ -59,22 +60,22 @@ class ProductConverter(Converter):
         product_type = args[0]
 
         for _, row in dataFrame.iterrows():
-            if product_type == "hamburger":
+            if product_type == ProductType.HAMBURGER:
                 product = Hamburger(
                     id=row["id"], name=row["name"], price=float(row["price"])
                 )
 
-            elif product_type == "soda":
+            elif product_type == ProductType.SODA:
                 product = Soda(
                     id=row["id"], name=row["name"], price=float(row["price"])
                 )
 
-            elif product_type == "drink":
+            elif product_type == ProductType.DRINK:
                 product = Drink(
                     id=row["id"], name=row["name"], price=float(row["price"])
                 )
 
-            elif product_type == "happymeal":
+            elif product_type == ProductType.HAPPYMEAL:
                 product = HappyMeal(
                     id=row["id"], name=row["name"], price=float(row["price"])
                 )
